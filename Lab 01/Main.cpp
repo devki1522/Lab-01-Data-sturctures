@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "list.h"
+#include "list.cpp" // include the implementation of the list functions
 
 using namespace std;
 

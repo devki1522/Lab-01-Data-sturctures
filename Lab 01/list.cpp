@@ -13,24 +13,57 @@ PRODUCT* CreateList(int n)
 	PRODUCT* head = NULL;
 	PRODUCT* tail = NULL;
 
-	for (i = 0, i <= n, i++)
-	{
-		PRODUCT newNode = new Product;
-		newNode->id = rand() % 100 + 1;
+	PRODUCT * newNode =  (head)malloc(sizeof(head));
 
+	for (int i = 0; i <= n; i++)
+	{ 
+		newNode -> productID = rand() % 100 + 1;
+		newNode -> productQty = rand() % 50;
+		newNode -> next = NULL;	
+	
+		if (!head)
+		{
+			head = tail = newNode;
+		}
+		else {
+
+			tail->next = newNode;
+			tail = newNode;
+		}
+		}
+	return head;
+};
+
+
+void PrintList(PRODUCT* head) {
+	PRODUCT* temp = head;
+	while(temp != NULL) {
+		std::cout << "Product ID: " << temp->productID << ", Quantity: " << temp->productQty << std::endl;
+		temp = temp->next;
 	}
+	
+}
 
+
+void ReduceQty(PRODUCT* head) {
+	PRODUCT* temp = head;
+	while(temp != NULL) {
+		if (temp->productID > 30) {
+			temp->productQty -5;
+		}
+		temp = temp->next;
+	}
 
 };
 
 
-PrintList(PRODUCT* head);
+void FreeList(PRODUCT* head) {
+	PRODUCT* temp = head;
 
+	while(temp != NULL) {
+		temp = temp->next;
+		free(temp);
+	}
+	head = NULL; // Set head to NULL after freeing the list
+}
 
-TraverseList(PRODUCT* head);
-
-
-ReduceQty(PRODUCT* head);
-
-
-FreeList(PRODUCT* head);
