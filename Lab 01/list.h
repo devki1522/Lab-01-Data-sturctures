@@ -4,7 +4,7 @@
 typedef struct PRODUCT {
 	int productID;
 	int productQty;
-	PRODUCT* next;
+	struct PRODUCT* next;
 }PRODUCT ;
 
 PRODUCT* CreateList(int n);

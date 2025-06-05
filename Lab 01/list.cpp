@@ -13,11 +13,10 @@ PRODUCT* CreateList(int n)
 	PRODUCT* head = NULL;
 	PRODUCT* tail = NULL;
 
-	PRODUCT * newNode =  (head)malloc(sizeof(head));
-
-	for (int i = 0; i <= n; i++)
-	{ 
-		newNode -> productID = rand() % 100 + 1;
+	for (int i = 0; i < n; i++)
+	{
+		PRODUCT* newNode = (PRODUCT*)malloc(sizeof(PRODUCT));
+		newNode -> productID = (rand() % 100) + 1;
 		newNode -> productQty = rand() % 50;
 		newNode -> next = NULL;	
 	
@@ -49,7 +48,8 @@ void ReduceQty(PRODUCT* head) {
 	PRODUCT* temp = head;
 	while(temp != NULL) {
 		if (temp->productID > 30) {
-			temp->productQty -5;
+			temp->productQty -= 5;
+			if (temp->productQty < 0) temp->productQty = 0;
 		}
 		temp = temp->next;
 	}
@@ -58,12 +58,12 @@ void ReduceQty(PRODUCT* head) {
 
 
 void FreeList(PRODUCT* head) {
-	PRODUCT* temp = head;
+	PRODUCT* temp;
 
-	while(temp != NULL) {
-		temp = temp->next;
+	while(head != NULL) {
+		temp = head;
+		head = head->next;
 		free(temp);
 	}
-	head = NULL; // Set head to NULL after freeing the list
 }
 
