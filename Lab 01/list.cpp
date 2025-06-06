@@ -6,6 +6,8 @@
 
 //Question 1 - Implementaation - devki - tanveer
 
+using namespace std;
+
 PRODUCT* CreateList(int n)
 {
 	srand(time(NULL));
@@ -16,9 +18,14 @@ PRODUCT* CreateList(int n)
 	for (int i = 0; i < n; i++)
 	{
 		PRODUCT* newNode = (PRODUCT*)malloc(sizeof(PRODUCT));
-		newNode -> productID = (rand() % 100) + 1;
-		newNode -> productQty = rand() % 50;
-		newNode -> next = NULL;	
+		if (newNode == NULL) {
+			cout << "Memory allocation failed!" << endl;
+			return 0;
+		}
+
+		newNode ->productID = (rand() % 100) + 1;
+		newNode ->productQty = rand() % 50;
+		newNode ->next = NULL;	
 	
 		if (!head)
 		{
@@ -37,7 +44,7 @@ PRODUCT* CreateList(int n)
 void PrintList(PRODUCT* head) {
 	PRODUCT* temp = head;
 	while(temp != NULL) {
-		std::cout << "Product ID: " << temp->productID << ", Quantity: " << temp->productQty << std::endl;
+		cout << "Product ID: " << temp->productID << ", Quantity: " << temp->productQty << endl;
 		temp = temp->next;
 	}
 	
